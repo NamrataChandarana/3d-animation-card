@@ -1,0 +1,118 @@
+:root {
+    --rotate: 25deg;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #191c29;
+}
+
+.container {
+    width: 330px;
+    height: 500px;
+    position: relative;
+    perspective: 2500px;
+    transition: transform .5s;
+}
+
+.back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    perspective: 900px;
+    transition: transform .5s;
+}
+
+.container:hover .back-img {
+    transform: rotateX(var(--rotate));
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    /* perspective: 900px; */
+}
+
+.front-img {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 80%;
+    z-index: -1;
+    perspective: 900px;
+    object-fit: cover;
+    perspective: 900px;
+    transition: all .5s;
+}
+
+.container:hover .front-img {
+    opacity: 1;
+    transform: translate3d(0%, -10%, 100px);
+}
+
+.title {
+    width: 70%;
+    object-fit: cover;
+    z-index: 1;
+    position: absolute;
+    inset: auto 0 0;
+    margin-inline: auto;
+    opacity: 10;
+    transition: transform .5s;
+}
+
+.container:hover .title {
+    transform: translateY(-43%);
+}
+
+.container:hover {
+    transform: rotateX(var(--rotate));
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    /* background-image: radial-gradient(circle, transparent 150px, black); */
+    opacity: 0;
+    transition: all .5s;
+    background-image: linear-gradient(to top,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%);
+
+}
+
+.container:hover::before {
+    opacity: 1;
+    transform: rotateX(var(--rotate));
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 65% -7px -2px;
+    z-index: -2;
+    /* background-image: radial-gradient(circle, transparent 150px, black); */
+    opacity: 0;
+    transition: all .5s;
+    background-image: linear-gradient(to bottom,
+            transparent 46%,
+            rgba(12, 13, 19, 0.5) 68%,
+            rgba(12, 13, 19) 97%);
+
+}
+
+.container:hover::after {
+    opacity: 1;
+    transform: rotateX(var(--rotate));
+}
